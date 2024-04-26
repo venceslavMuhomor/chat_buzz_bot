@@ -18,7 +18,7 @@ async def main():
 
     w_cloud = words_cloud(common_words)
 
-    await send_to_chat(chat_id=-1001919302355, file=w_cloud)
+    await send_to_chat(chat_id=-config.chat_id, file=w_cloud)
 
 if __name__ == '__main__':
     asyncio.run(main())

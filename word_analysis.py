@@ -1,5 +1,6 @@
 from collections import Counter
 from io import BytesIO
+import json
 from typing import Iterable, List
 import string
 
@@ -21,8 +22,15 @@ def common_words_list(messages: Iterable, words_count: int) -> List[str]:
 
     words_list = []
 
+    try:
+        with open("stop.json", 'r', encoding='utf-8') as file:
+            custom_stop_words = json.load(file)
+    except FileNotFoundError:
+        custom_stop_words = []
+
     stop_words = set(
         stopwords.words('russian')+
+        custom_stop_words +
         list(string.punctuation)+ 
         list(string.digits)
     )
